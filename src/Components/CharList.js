@@ -5,7 +5,7 @@ export default function CharList(props) {
   const { characters } = props;
 
   return (
-    <table className="character">
+    <table className="character" data-test-char-list>
       <thead className="character--head">
         <tr>
           <th className="character--head-cell">Name</th>
