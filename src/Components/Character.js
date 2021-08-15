@@ -4,7 +4,7 @@ import ChangeDateFormat from "../Helper/ChangeDateFormat";
 
 export default function Character(props) {
   let history = useHistory();
-  const { name, occupation: occupationData, id } = props;
+  const { name, occupation: occupationData, category, id } = props;
 
   let { birthday } = props;
   birthday = ChangeDateFormat(birthday);
