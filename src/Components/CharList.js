@@ -10,6 +10,7 @@ export default function CharList(props) {
         <tr>
           <th className="character--head-cell">Name</th>
           <th className="character--head-cell">Occupation</th>
+          <th className="character--head-cell">Category</th>
           <th className="character--head-cell">Birthday</th>
         </tr>
       </thead>
@@ -20,6 +21,7 @@ export default function CharList(props) {
             name={char.name}
             occupation={char.occupation}
             birthday={char.birthday}
+            category={char.category}
             id={char.char_id}
           />
         ))}
