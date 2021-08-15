@@ -1,4 +1,5 @@
-export const baseURL = "https://www.breakingbadapi.com/api";
+export const baseURL = process.env.API_BASEURL;
+
 export const searchByID = function (id) {
   return `${baseURL}/characters/${id}`;
 };
