@@ -5,7 +5,7 @@ import {
   searchByCategory,
 } from "../../utils/URLs";
 
-const API_BASEURL = process.env.API_BASEURL;
+const API_BASEURL = `${process.env.REACT_APP_API_BASEURL}/api`;
 
 describe("URL Generators", () => {
   it("searchByID generates URL for search category by ID", function () {

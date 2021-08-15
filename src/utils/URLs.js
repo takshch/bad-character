@@ -1,4 +1,4 @@
-export const baseURL = process.env.API_BASEURL;
+export const baseURL = `${process.env.REACT_APP_API_BASEURL}/api`;
 
 export const searchByID = function (id) {
   return `${baseURL}/characters/${id}`;

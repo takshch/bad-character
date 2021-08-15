@@ -17,24 +17,31 @@ async function fetchByCategory(category, page = 0, limit = 10) {
   return data;
 }
 
-function setCharacterByCategory(category, page, setCharacters) {
-  fetchByCategory(category, page).then((value) => setCharacters(value));
+function setCharacterByCategory(category, page, setCharacters, setIsLoading) {
+  fetchByCategory(category, page).then((value) => {
+    setCharacters(value);
+    setIsLoading(false);
+  });
 }
 
 export default function Home() {
   const [characters, setCharacters] = useState([]);
   const [searchCategory, setSearchCategory] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(0);
 
   useEffect(() => {
     const limit = 10;
+
+    setIsLoading(true);
     if (searchCategory !== "") {
-      setCharacterByCategory(searchCategory, page, setCharacters);
+      setCharacterByCategory(searchCategory, page, setCharacters, setIsLoading);
     } else {
       handleCharacters(
         page,
         (charactersData) => {
           setCharacters(charactersData);
+          setIsLoading(false);
         },
         limit
       );
@@ -59,6 +66,7 @@ export default function Home() {
           }}
         />
       </div>
+      {isLoading ? "Loading...." : null}
       <CharList characters={characters} />
       <ReactPaginate
         initialPage={0}
