@@ -1,10 +1,14 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import ChangeDateFormat from "../Helper/ChangeDateFormat";
 
 export default function Character(props) {
   let history = useHistory();
+  const { name, occupation: occupationData, id } = props;
 
-  const { name, occupation: occupationData, birthday, category, id } = props;
+  let { birthday } = props;
+  birthday = ChangeDateFormat(birthday);
+
   const occupation = Array.isArray(occupationData)
     ? occupationData.reduce((accumulator, currentValue) => {
         return `${accumulator}, ${currentValue}`;
