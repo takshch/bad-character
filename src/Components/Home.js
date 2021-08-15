@@ -3,43 +3,49 @@ import { useEffect, useState } from "react";
 import getCharacters from "../Data/getCharacters";
 import ReactPaginate from "react-paginate";
 import CharList from "./CharList";
+import getByCategory from "../Data/getByCategory";
+import debounce from "lodash.debounce";
 
-async function handleData(page, handleDataFn, limit) {
+async function handleCharacters(page, handleDataFn, limit) {
   const charactersData = await getCharacters(limit, page);
   console.log(charactersData);
   handleDataFn(charactersData);
 }
 
-function handleSearchText(e, characters, handleDataFn) {
-  const searchValue = e.target.value;
-  const filteredCharacter = characters.filter(({ category }) => {
-    console.log(category);
-    return category.toLowerCase().includes(searchValue.toLowerCase());
-  });
-  console.log(searchValue, filteredCharacter);
-  handleDataFn(filteredCharacter);
+async function fetchByCategory(category, page = 0, limit = 10) {
+  const data = await getByCategory(category, page, limit);
+  return data;
+}
+
+function setCharacterByCategory(category, page, setCharacters) {
+  fetchByCategory(category, page).then((value) => setCharacters(value));
 }
 
 export default function Home() {
   const [characters, setCharacters] = useState([]);
-  const [filteredCharacters, setFilteredCharacters] = useState([]);
+  const [searchCategory, setSearchCategory] = useState("");
   const [page, setPage] = useState(0);
 
   useEffect(() => {
     const limit = 10;
-    handleData(
-      page,
-      (charactersData) => {
-        setCharacters(charactersData);
-        setFilteredCharacters(charactersData);
-      },
-      limit
-    );
-  }, [page]);
+    if (searchCategory !== "") {
+      setCharacterByCategory(searchCategory, page, setCharacters);
+    } else {
+      handleCharacters(
+        page,
+        (charactersData) => {
+          setCharacters(charactersData);
+        },
+        limit
+      );
+    }
+  }, [page, searchCategory]);
 
   function handlePage({ selected }) {
     setPage(selected);
   }
+
+  const handleSearch = debounce((e) => setSearchCategory(e.target.value), 1000);
 
   return (
     <div className="home">
@@ -49,12 +55,11 @@ export default function Home() {
           className="search--box"
           placeholder="Search by Category"
           onChange={(e) => {
-            console.log(characters);
-            handleSearchText(e, characters, setFilteredCharacters);
+            handleSearch(e);
           }}
         />
       </div>
-      <CharList characters={filteredCharacters} />
+      <CharList characters={characters} />
       <ReactPaginate
         initialPage={0}
         previousLabel={page === 0 ? false : "previous"}
