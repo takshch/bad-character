@@ -36,3 +36,32 @@
     transform: rotate(360deg);
   }
 }
+
+
+.character {
+  background-color: #fafafa;
+  border-spacing: 0;
+}
+
+.character--head {
+  background: #fff;
+}
+
+.character--head-cell {
+  padding: 10px 5px;
+  border-bottom: 1px solid gray;
+}
+
+.character--cell {
+  padding: 10px;
+}
+
+.character--block {
+  background-color: #edf2fb;
+  padding: 0 10px;
+}
+
+.character--block:hover {
+  background-color: #d7e3fc;
+  cursor: pointer;
+}
