@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import getCharById from "../Data/getCharById";
 import getCharQuotes from "../Data/getCharQuotes";
+import Loading from './Loading'
 
 async function handleData(id, setCharacter) {
   const characterData = await getCharById(id);
@@ -44,13 +45,15 @@ function InfoItem(props) {
 export default function CharacterPage() {
   const { id } = useParams();
   const [character, setCharacter] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    handleData(id, setCharacter);
+    handleData(id, setCharacter).then(() => setIsLoading(false));
   }, [id]);
 
   return (
     <div>
+      {isLoading ? <Loading /> : null}
       {character === null ? (
         "NOT FOUND"
       ) : (
