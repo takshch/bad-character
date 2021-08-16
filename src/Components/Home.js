@@ -5,6 +5,7 @@ import ReactPaginate from "react-paginate";
 import CharList from "./CharList";
 import getByCategory from "../Data/getByCategory";
 import debounce from "lodash.debounce";
+import Loading from "./Loading";
 
 async function handleCharacters(page, handleDataFn, limit) {
   const charactersData = await getCharacters(limit, page);
@@ -41,10 +42,9 @@ export default function Home() {
         page,
         (charactersData) => {
           setCharacters(charactersData);
-          setIsLoading(false);
         },
         limit
-      );
+      ).then(() => setIsLoading(false));
     }
   }, [page, searchCategory]);
 
@@ -66,7 +66,7 @@ export default function Home() {
           }}
         />
       </div>
-      {isLoading ? "Loading...." : null}
+      {isLoading ? <Loading /> : null}
       <CharList characters={characters} />
       <ReactPaginate
         initialPage={0}
