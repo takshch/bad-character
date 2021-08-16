@@ -1,6 +1,7 @@
 .character {
   background-color: #fafafa;
   border-spacing: 0;
+  margin-top: 1.5em;
 }
 
 .character--head {
@@ -191,4 +192,10 @@
   100% {
     opacity: 1;
   }
+}
+
+.table-handler {
+  display: flex;
+  justify-content: center;
+  overflow: auto;
 }

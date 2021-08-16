@@ -3,6 +3,7 @@ import Home from "./Components/Home";
 import CharacterPage from "./Components/CharacterPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import NotFound from "./Components/NotFound";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
           </Route>
           <Route exact path="/character/:id">
             <CharacterPage />
+          </Route>
+          <Route>
+            <NotFound />
           </Route>
         </Switch>
       </Router>
