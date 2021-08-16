@@ -54,7 +54,7 @@ export default function CharacterPage() {
 
   return (
     <React.Fragment>
-      {character.name ? (
+      {character && character.name ? (
         <Helmet>
           <title>{character.name} - Bad Characters</title>
         </Helmet>
@@ -65,6 +65,7 @@ export default function CharacterPage() {
           "NOT FOUND"
         ) : (
           <div className="profile">
+            
             <div className="profile--user">
               <div className="profile--picture">
                 <img
