@@ -1,3 +1,15 @@
+# Screenshot
+- **Home Page**
+- ![image](https://user-images.githubusercontent.com/26649558/129512572-245f1389-83a9-4813-8c38-fd718cc232cd.png)
+- **Chracter Page**
+- ![image](https://user-images.githubusercontent.com/26649558/129512612-7bd95b48-8543-4ee0-abaa-530f6dd45efe.png)
+- **Loading state on home page**
+- ![image](https://user-images.githubusercontent.com/26649558/129513036-e82f89e7-7da5-4297-b8e8-7318eec653de.png)
+- **404 Not found Page**
+- ![image](https://user-images.githubusercontent.com/26649558/129512674-275e5fd9-349c-4036-890b-4534e0251c8d.png)
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -5,7 +17,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
-
 ### `yarn start`
 
 Runs the app in the development mode.\
